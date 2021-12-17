@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../includes/title.ejs') %>
+	</head>
+
+	<body>
+		<%- include('../includes/navigation.ejs') %>
+
+		<main>
+			<div class="container" style="margin-top: 20px">
+				<h1 class="display-6">All Products</h1>
+				<% if (products.length > 0) { %>
+				<div class="row justify-content-start">
+					<% products.forEach(p => { %>
+					<div class="col-3" style="margin-bottom: 20px">
+						<div class="card w-100 h-100">
+							<img
+								src="<%= p.imageUrl %>"
+								class="card-img-top"
+								alt="picsum.photos"
+							/>
+							<div class="card-body">
+								<h5 class="card-title"><%= p.title %></h5>
+								<p class="card-text"><%= p.description %></p>
+								<p><strong>$ <%= p.price %></strong></p>
+							</div>
+							<div
+								class="card-footer"
+								style="display: flex; justify-content: space-around"
+							>
+								<a href="/products/<%= p.id %> " class="btn btn-dark">
+									View Product
+								</a>
+								<a href="/admin/edit-product/<%= p.id %> " class="btn btn-dark">
+									Edit
+								</a>
+								<form action="/admin/delete" method="post">
+									<input type="hidden" value="<%= p.id %>" name="id" id="id" />
+									<button class="btn btn-danger">Delete</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+				<% } else { %>
+				<h1>No Products found !</h1>
+				<% } %>
+			</div>
+		</main>
+	</body>
+</html>

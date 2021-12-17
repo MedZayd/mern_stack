@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../includes/title.ejs') %>
+		<link rel="stylesheet" href="/css/product.css" />
+	</head>
+
+	<body>
+		<%- include('../includes/navigation.ejs') %>
+
+		<main>
+			<div class="container">
+				<div class="card">
+					<div class="row g-0">
+						<div class="col-md-3">
+							<img
+								src="<%= product.imageUrl %>"
+								class="img-fluid rounded-start"
+								alt="<%= product.title %>"
+							/>
+						</div>
+						<div class="col-md-9">
+							<div class="card-body">
+								<h5 class="card-title"><%= product.title %></h5>
+								<p class="card-text"><%= product.description %></p>
+								<p class="card-text"><strong>$ <%= product.price %></strong></p>
+							</div>
+						</div>
+						<div class="card-footer" style="text-align: right">
+							<%- include('../includes/add-to-cart.ejs') %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

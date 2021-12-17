@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('../includes/title.ejs') %>
+	</head>
+
+	<body>
+		<%- include('../includes/navigation.ejs') %>
+
+		<main>
+			<div class="container">
+				<h1 class="display-6">Products</h1>
+				<% if (products.length > 0) { %>
+				<div class="card-group">
+					<%products.forEach(p => { %>
+					<div class="card" style="max-width: 320px;">
+						<img
+							src="<%= p.imageUrl %>"
+							class="card-img-top"
+							alt="picsum.photos"
+						/>
+						<div class="card-body">
+							<h5 class="card-title"><%= p.title %></h5>
+							<p class="card-text">
+								<%= p.description %>
+							</p>
+							<p><strong>$ <%= p.price %></strong></p>
+						</div>
+						<div class="card-footer" style="display: flex; justify-content: space-around;">
+							<a href="/products/<%= p.id %> " class="btn btn-dark">View Product</a>
+							<%- include('../includes/add-to-cart.ejs', { product: p }) %>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+				<a href="/products" class="btn btn-dark" style="max-width: 150px; margin-top: 20px;">More Products</a>
+				<% } else { %>
+				<h4 class="display-6">No Products found !</h1>
+				<% } %>
+			</div>
+		</main>
+	</body>
+</html>
